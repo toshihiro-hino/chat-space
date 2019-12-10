@@ -1,0 +1,26 @@
+.main
+    .group-info
+        .group-info__left-box
+            %p.group-info__left-box__group-name Hiroshima
+            %p.group-info__left-box__member-name Member : hino
+        =link_to "#" do
+            %p.group-info__edit-text Edit
+                
+    .messages
+        .messages__top-info
+            %p.messages__top-info__user-name hino
+            %p.messages__top-info__date 2019/11/20(Wed) 17:10:20
+        %p.messages__comment こんにちは
+    
+    .send-message
+        .send-message__content 
+            %input{class:"send-message__content__text"}
+            %label{class: "send-message__content__image-button"}
+                %i.far.fa-image
+                %input(type="file")/
+        %p.send-message__send-button Send
+        
+
+
+
+        
