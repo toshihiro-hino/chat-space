@@ -4,14 +4,18 @@
             %h3.user-info__top-box__user-name
                 = current_user.name 
             .user-info__top-box__menu
-                =link_to "#" do
+                =link_to new_group_path do
                     %i.fas.fa-edit.fa-fw
                 =link_to edit_user_path(current_user) do
                     %i.fas.fa-cog.fa-fw
 
     .groups
-        .groups__leftbox
-            %p.groups__group__group-name Hiroshima
-            %p.groups__group__last-message まだメッセージがありません
+        - current_user.groups.each do |group|
+            .groups__group
+                = link_to group_messages_path(group) do
+                    .groups__group__group-name  
+                        =group.name
+                .groups__group__last-message 
+                    まだメッセージがありません
             
 
