@@ -1,26 +1,22 @@
 .main
     .group-info
         .group-info__left-box
-            %p.group-info__left-box__group-name Hiroshima
-            %p.group-info__left-box__member-name Member : hino
-        =link_to "#" do
+            .group-info__left-box__group-name
+                = @group.name
+            .group-info__left-box__member-name
+                Member :  
+                = @group.users.pluck(:name).join(' , ')
+        =link_to edit_group_path(@group) do
             %p.group-info__edit-text Edit
                 
     .messages
-        .messages__top-info
-            %p.messages__top-info__user-name hino
-            %p.messages__top-info__date 2019/11/20(Wed) 17:10:20
-        %p.messages__comment こんにちは
-    
-    .send-message
-        .send-message__content 
-            %input{class:"send-message__content__text"}
-            %label{class: "send-message__content__image-button"}
-                %i.far.fa-image
-                %input(type="file")/
-        %p.send-message__send-button Send
+        = render @messages
         
-
-
-
-        
+    .form
+        = form_for [@group, @message] do |f|
+            = f.text_field :content, class: 'new_message__message', placeholder: 'type a message'
+            .new_message__mask
+                = f.label :image, class: 'new_message__mask__image' do
+                    = icon('fas', 'image', class: 'icon')
+                    = f.file_field :image, class: 'hidden'
+            = f.submit 'Send', class: 'new_message__submit'

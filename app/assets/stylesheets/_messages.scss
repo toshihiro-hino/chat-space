@@ -100,7 +100,8 @@
         background-color: #fafafa;
         height: calc(100vh - 100px - 90px);
         padding: 35px 40px;
-        &__top-info {
+        overflow: scroll;
+        .top-info {
             display: flex;
             &__user-name {
                 color: #333333;
@@ -113,53 +114,70 @@
                 margin-left: 10px;
             }
         }
-        &__comment {
+        .comment {
             color: #434A54;
             font-size: 14px;
             padding: 12px 0 46px;
         }
     }
 
-    .send-message {
+    .form {
         background-color: #d2d2d2;
         height: 90px;
         padding: 0 40px;
-        display: flex;
-        justify-content: space-between;
-        &__content {
-            position: relative;
+        .new_message {
             display: flex;
-            background-color: white;
-            padding: 0 10px;
-            height: 50px;
-            width: 100%;
-            margin: 20px 15px 0 20px;
-            &__text {
-                line-height: 50px;
-                height: 45px;
+            justify-content: space-between;
+            position: relative;
+            &__message {
+                background-color: white;
+                padding: 0 10px;
+                height: 50px;
+                width: 100%;
+                margin: 20px 15px 0 20px;   
             }
-            i {
-                position: absolute;
-                right: 15px;
-                top: 16px;
-                color: black;
-            }
-            &__image-button{
-                input {
-                    display: none;
+            &__mask {
+                background-clip: red;
+                position: relative;
+                &__image {
+                    position: absolute;
+                    top: 33px;
+                    right: 30px;
+                    .icon{
+                        color: black;
+                    }
+                    .hidden {
+                        display: none;
+                    }
                 }
-                
             }
-        }
-        &__send-button{
-            background-color: skyblue;
-            color: white;
-            width: 100px;
-            height: 50px;
-            margin: 20px 0;
-            line-height: 50px;
-            text-align: center;
+        
+            &__submit {
+                background-color: skyblue;
+                color: white;
+                width: 100px;
+                height: 50px;
+                margin: 20px 0;
+                line-height: 50px;
+                text-align: center;
+            }
         }
     }
 }
 
+// &__text {
+//     line-height: 50px;
+//     height: 45px;
+// }
+// i {
+//     position: absolute;
+//     right: 15px;
+//     top: 16px;
+//     color: black;
+// }
+// &__image-button{
+//     input {
+//         display: none;
+//     }
+    
+// }
