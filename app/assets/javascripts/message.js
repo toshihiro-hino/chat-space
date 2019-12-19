@@ -1,6 +1,6 @@
 $(function(){
     function buildHTML(message){
-        if (message.content && message.image) {
+        if (message.image) {
           var html = `<div class="message">
                         <div class="top-info">
                             <div class="top-info__user-name">
@@ -17,7 +17,7 @@ $(function(){
                         <img class="lower-message__image" src= ${message.image}>
                         </div>
                       </div>`
-        } else if (message.content) {
+        } else {
           var html = `<div class="message">
                         <div class="top-info">
                             <div class="top-info__user-name">
@@ -31,25 +31,12 @@ $(function(){
                             <p class="lower-message__content">
                                 ${message.content}
                             </p>
-                        </div>
-                      </div>`
-        } else if (message.image) {
-            var html = `<div class="message">
-                        <div class="top-info">
-                            <div class="top-info__user-name">
-                                ${message.name}
-                            </div>
-                            <div class="top-info__date">
-                                ${message.created_at}
-                            </div>
-                        </div>
-                        <div class="comment">                           
-                        <img class="lower-message__image" src= ${message.image}>
                         </div>
                       </div>`
         }
         return html
     }
+
     $('#new_message').on('submit',function(e){
         e.preventDefault()
         let formData = new FormData(this);
@@ -73,30 +60,4 @@ $(function(){
             alert("メッセージ送信に失敗しました");
         })
     })
-    if (document.location.href.match(/\/groups\/\d+\/messages/)) {
-        var reloadMessages = function() {
-            last_message_id = $('.message:last').data("message-id");
-            $.ajax({
-                url: "api/messages",
-                type: 'GET',
-                dataType: 'json',
-                data: {id: last_message_id}
-            })
-            .done(function(messages) {
-                var insertHTML = '';
-                $.each(messages, function(i, message) {
-                    insertHTML += buildHTML(message)
-                });
-                $('.messages').append(insertHTML);
-                
-                $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-                
-            })
-            .fail(function() {
-                console.log('error');
-            });
-        };
-        setInterval(reloadMessages, 7000)   
-    }   
 });
-
