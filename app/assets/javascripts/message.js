@@ -1,7 +1,7 @@
 $(function(){
     function buildHTML(message){
         if (message.content && message.image) {
-          var html = `<div class="message">
+          var html = `<div class="message" data-message-id = ${message.id}>
                         <div class="top-info">
                             <div class="top-info__user-name">
                                 ${message.name}
@@ -18,7 +18,7 @@ $(function(){
                         </div>
                       </div>`
         } else if (message.content) {
-          var html = `<div class="message">
+          var html = `<div class="message" data-message-id = ${message.id}>
                         <div class="top-info">
                             <div class="top-info__user-name">
                                 ${message.name}
@@ -34,7 +34,7 @@ $(function(){
                         </div>
                       </div>`
         } else if (message.image) {
-            var html = `<div class="message">
+            var html = `<div class="message" data-message-id = ${message.id}>
                         <div class="top-info">
                             <div class="top-info__user-name">
                                 ${message.name}
@@ -75,7 +75,7 @@ $(function(){
     })
     if (document.location.href.match(/\/groups\/\d+\/messages/)) {
         var reloadMessages = function() {
-            last_message_id = $('.message:last').data("message-id");
+            last_message_id = $('.message').last().data("message-id");
             $.ajax({
                 url: "api/messages",
                 type: 'GET',
@@ -99,4 +99,3 @@ $(function(){
         setInterval(reloadMessages, 7000)   
     }   
 });
-
