@@ -66,7 +66,7 @@ $(function(){
             var html = buildHTML(message);
             $(".messages").append(html);
             $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-            $('#message_content').val('')
+            $('form')[0].reset();
             $('.new_message__submit').attr('disabled',false);
         })
         .fail(function(){
